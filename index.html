@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>SeqMinerCmd by zhanxw</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>SeqMinerCmd</h1>
+        <h2>A command line tool for SeqMiner</h2>
+        <a href="https://github.com/zhanxw/SeqMinerCmd" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="seqminercmd-tutorial" class="anchor" href="#seqminercmd-tutorial"><span class="octicon octicon-link"></span></a>SeqMinerCmd Tutorial</h1>
+
+<p>A command line tool for SeqMiner</p>
+
+<p>(Updated October 1, 2013)</p>
+
+<p><a href="https://github.com/zhanxw/SeqMinerCmd">SeqMinerCmd</a> is a convenient data extraction tools for <a href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-41">VCF</a> and <a href="http://www.1000genomes.org/wiki/analysis/variant-call-format/bcf-binary-vcf-version-2">BCF</a> files. The software, <code>SeqMinerCmd</code>, can be downloaded in <a href="https://github.com/zhanxw/SeqMinerCmd/archive/master.zip">this link</a> and its source code can be obtained from <a href="https://github.com/zhanxw/SeqMinerCmd">github</a>.</p>
+
+<p>This tutorial demonstrates by-region and by-gene based methods, and the extraction results can be stored as a R matrix or a list. </p>
+
+<h2>
+<a name="extract-gentoype-matrix-from-vcf-file" class="anchor" href="#extract-gentoype-matrix-from-vcf-file"><span class="octicon octicon-link"></span></a>Extract gentoype matrix from VCF file</h2>
+
+<ol>
+<li>extract by region</li>
+</ol><div class="highlight highlight-bash"><pre>./seqMiner -r <span class="s2">"1:196621007-196634467"</span> vcf/all.anno.filtered.extract.bcf.gz
+</pre></div>
+
+<pre><code>## 1 region to be extracted.
+## ----- 1:196621007-196634467 -----
+## Position NA12286 NA12341 NA12342
+## 1:196623337  1   2   0
+## 1:196632129  0   2   0
+## 1:196632470  1   2   0
+## 1:196633606  2   2   2
+</code></pre>
+
+<ol>
+<li>extract by gene</li>
+</ol><div class="highlight highlight-bash"><pre>./seqMiner --geneFile vcf/refFlat_hg19_6col.txt.gz -n CFH vcf/all.anno.filtered.extract.vcf.gz
+</pre></div>
+
+<pre><code>## 1 region to be extracted.
+## ----- CFH -----
+## Position NA12286 NA12341 NA12342
+## 1:196623337  1   2   0
+## 1:196632129  0   2   0
+## 1:196632470  1   2   0
+## 1:196633606  2   2   2
+## 1:196623337  1   2   0
+## 1:196632129  0   2   0
+## 1:196632470  1   2   0
+## 1:196633606  2   2   2
+</code></pre>
+
+<h2>
+<a name="extract-arbitrary-fields-from-vcf-file" class="anchor" href="#extract-arbitrary-fields-from-vcf-file"><span class="octicon octicon-link"></span></a>Extract arbitrary fields from VCF file</h2>
+
+<ol>
+<li>extract by region</li>
+</ol><div class="highlight highlight-bash"><pre>./seqMiner -r <span class="s2">"1:196621007-196634467"</span> -e CHROM,POS:DP:GT,GD vcf/all.anno.filtered.extract.vcf.gz
+</pre></div>
+
+<pre><code>## CHROM    POS DP  NA12286:GD  NA12341:GD  NA12342:GD  NA12286:GT  NA12341:GT  NA12342:GT
+## 1    196623337   23  0   2   21  0/1 1/1 0/0
+## 1    196632129   25  1   7   17  0/0 1/1 0/0
+## 1    196632470   28  3   7   18  0/1 1/1 0/0
+## 1    196633606   26  2   5   19  1/1 1/1 1/1
+</code></pre>
+
+<ol>
+<li>extract by gene</li>
+</ol><div class="highlight highlight-bash"><pre>./seqMiner --geneFile vcf/refFlat_hg19_6col.txt.gz -n CFH -e CHROM,POS:DP vcf/all.anno.filtered.extract.vcf.gz
+</pre></div>
+
+<pre><code>## CHROM    POS DP
+## 1    196623337   23
+## 1    196632129   25
+## 1    196632470   28
+## 1    196633606   26
+## 1    196623337   23
+## 1    196632129   25
+## 1    196632470   28
+## 1    196633606   26
+</code></pre>
+
+<h2>
+<a name="contact" class="anchor" href="#contact"><span class="octicon octicon-link"></span></a>Contact</h2>
+
+<p>SeqMiner is developed by <a href="mailto:zhanxw@gmail.com">Xiaowei Zhan</a> and <a href="mailto:dajiang.liu@gmail.com">Dajiang Liu</a>.
+We welcome your questions and feedbacks.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/zhanxw/SeqMinerCmd/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/zhanxw/SeqMinerCmd/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/zhanxw/SeqMinerCmd"></a> is maintained by <a href="https://github.com/zhanxw">zhanxw</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-21871925-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
