@@ -160,12 +160,12 @@ if (has(opt, "h") && as.logical(opt, "h")) {
 
 suppressPackageStartupMessages(loadOK <- require(stringr, quietly = TRUE))
 if (!loadOK) {
-    cat("Please install seqminer using:\ninstall.packages(\"seqminer\"\n")
+    cat("Please install seqminer using:\ninstall.packages(\"seqminer\")\n")
     q("no")
 }
 suppressPackageStartupMessages(loadOK <- require(seqminer, quietly = TRUE))
 if (!loadOK) {
-    cat("Please install seqminer using:\ninstall.packages(\"seqminer\"\n")
+    cat("Please install seqminer using:\ninstall.packages(\"seqminer\")\n")
     q("no")
 }
 
