@@ -1,6 +1,6 @@
 SeqMinerCmd Tutorial
 ========================================================
-A command line tool for SeqMiner
+A command line tool for [SeqMiner][SeqMiner_link]
 
 (Updated October 1, 2013)
 
