@@ -158,8 +158,17 @@ if (has(opt, "h") && as.logical(opt, "h")) {
     q("no")
 }
 
-suppressPackageStartupMessages(library(seqminer))
-suppressPackageStartupMessages(library(stringr))
+suppressPackageStartupMessages(loadOK <- require(stringr, quietly = TRUE))
+if (!loadOK) {
+    cat("Please install seqminer using:\ninstall.packages(\"seqminer\"\n")
+    q("no")
+}
+suppressPackageStartupMessages(loadOK <- require(seqminer, quietly = TRUE))
+if (!loadOK) {
+    cat("Please install seqminer using:\ninstall.packages(\"seqminer\"\n")
+    q("no")
+}
+
 if (opt$nargs != 1) {
     stop(gettextf("Need to specify one VCF/BCF file, but %d given", opt$nargs))
 }
