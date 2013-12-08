@@ -105,3 +105,7 @@ We welcome your questions and feedbacks.
 [SKAT_link]: http://www.hsph.harvard.edu/skat/
 [SeqMinerCmd_link]: https://github.com/zhanxw/SeqMinerCmd
 [SeqMinerCmd_zip_link]: https://github.com/zhanxw/SeqMinerCmd/archive/master.zip
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zhanxw/seqminercmd/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
